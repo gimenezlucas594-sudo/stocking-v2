@@ -1,45 +1,8 @@
 [phases.setup]
-nixPkgs = ["python310"]
+nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["pip install -r backend/requirements.txt"]
-
-[phases.build]
-cmds = ["cd backend && python init_db.py"]
+cmds = ["cd backend && pip install -r requirements.txt"]
 
 [start]
-cmd = "cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
-```
-
----
-
-## 4️⃣ Crear `.gitignore` (en la raíz)
-
-New → File → Nombre: `.gitignore`
-
-Pegá esto:
-```
-__pycache__/
-*.pyc
-*.db
-*.sqlite
-.venv/
-venv/
-.env
-.idea/
-```
-
----
-
-## 5️⃣ Actualizar `backend/requirements.txt`
-
-Abrí el archivo `backend/requirements.txt` y **reemplazá TODO** por esto:
-```
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-sqlalchemy==2.0.25
-pydantic==2.5.3
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-python-multipart==0.0.6
-psycopg2-binary==2.9.9
+cmd = "cd backend && python init_db.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
